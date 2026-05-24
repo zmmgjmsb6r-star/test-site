@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Νίκος Παπαδόπουλος – Υδραυλικός</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --blue: #1a3a6b;
+      --accent: #e8a020;
+      --light: #f4f1eb;
+      --white: #ffffff;
+      --gray: #8a8a8a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+    }
+    .nav-phone {
+      display: flex; align-items: center; gap: 0.4rem;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+    .nav-phone span { font-size: 1.1rem; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 7rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,58,107,0.8) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: '🔧';
+      position: absolute; bottom: 2rem; right: 1.5rem;
+      font-size: 8rem;
+      opacity: 0.06;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+      width: fit-content;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 14vw, 5.5rem);
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: 1px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 em {
+      color: var(--accent);
+      font-style: normal;
+      display: block;
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.6);
+      margin-top: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 340px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-cta {
+      margin-top: 2rem;
+      display: flex; flex-direction: column; gap: 0.8rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 1rem 1.5rem;
+      border: none; border-radius: 4px;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 1rem 1.5rem;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 4px;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+    }
+
+    /* BADGES */
+    .badges {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      padding: 1.5rem;
+      background: var(--blue);
+    }
+    .badge {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border-radius: 99px;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+
+    /* SECTION */
+    section { padding: 3rem 1.5rem; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 8vw, 3rem);
+      line-height: 1;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1.2rem 1rem;
+      border-bottom: 3px solid var(--accent);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .service-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .service-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+
+    /* WHY US */
+    .why-section { background: var(--navy); }
+    .why-section .section-title { color: var(--white); }
+    .why-grid {
+      display: grid; gap: 1rem; margin-top: 1.5rem;
+    }
+    .why-card {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 1.2rem;
+    }
+    .why-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      min-width: 2rem;
+    }
+    .why-text h3 {
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .why-text p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.5; }
+
+    /* REVIEWS */
+    .reviews-grid { display: grid; gap: 1rem; margin-top: 1.5rem; }
+    .review-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .stars { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .review-text { font-size: 0.9rem; line-height: 1.6; color: #444; margin-bottom: 0.8rem; }
+    .reviewer { font-weight: 700; font-size: 0.85rem; color: var(--navy); }
+
+    /* CONTACT */
+    .contact-section { background: var(--accent); }
+    .contact-section .section-label { color: var(--navy); opacity: 0.6; }
+    .contact-section .section-title { color: var(--navy); }
+    .contact-cards { display: grid; gap: 0.8rem; margin-top: 1.5rem; }
+    .contact-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1.2rem;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none;
+      color: var(--navy);
+    }
+    .contact-icon { font-size: 1.5rem; }
+    .contact-label { font-size: 0.75rem; color: var(--gray); }
+    .contact-value { font-weight: 700; font-size: 1rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+    }
+    footer strong { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Παπαδόπουλος</div>
+  <a href="tel:+306912345678" class="nav-phone"><span>📞</span> 691 234 5678</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">✅ Διαθέσιμος 24/7</div>
+  <h1>Υδραυλικός<em>Νίκος</em></h1>
+  <p class="hero-sub">Επαγγελματικές υδραυλικές εργασίες στη Θεσσαλονίκη. Γρήγορη ανταπόκριση, εγγυημένη δουλειά.</p>
+  <div class="hero-cta">
+    <a href="tel:+306912345678" class="btn-primary">📞 Κάλεσέ με τώρα</a>
+    <a href="#services" class="btn-outline">Δες τις υπηρεσίες</a>
+  </div>
+</section>
+
+<!-- BADGES -->
+<div class="badges">
+  <span class="badge">⚡ Άμεση ανταπόκριση</span>
+  <span class="badge">🏆 20+ χρόνια εμπειρία</span>
+  <span class="badge">📍 Θεσσαλονίκη</span>
+  <span class="badge">✅ Εγγύηση εργασίας</span>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">Τι κάνω</div>
+  <div class="section-title">Υπηρεσίες</div>
+  <p style="color:#666; font-size:0.95rem; line-height:1.6;">Από μικρές επισκευές έως πλήρεις εγκαταστάσεις, αναλαμβάνω κάθε υδραυλική εργασία.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🚿</div>
+      <div class="service-name">Αποφράξεις</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <div class="service-name">Επισκευές βλαβών</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <div class="service-name">Νέες εγκαταστάσεις</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌡️</div>
+      <div class="service-name">Καλοριφέρ & Boiler</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚰</div>
+      <div class="service-name">Αλλαγή υδραυλικών</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚠️</div>
+      <div class="service-name">Επείγουσες βλάβες</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="section-label">Γιατί εμένα</div>
+  <div class="section-title" style="color:white">Η διαφορά μου</div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-text">
+        <h3>Φτάνω σε 30 λεπτά</h3>
+        <p>Για επείγουσες βλάβες, είμαι εκεί γρήγορα. Χωρίς χαμένες ώρες αναμονής.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-text">
+        <h3>Τιμή πριν ξεκινήσω</h3>
+        <p>Σου λέω την τιμή πριν αρχίσω τη δουλειά. Δεν υπάρχουν εκπλήξεις στο τέλος.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-text">
+        <h3>Εγγύηση 1 χρόνου</h3>
+        <p>Όλες οι εργασίες μου έχουν εγγύηση. Αν κάτι δεν πάει καλά, επιστρέφω δωρεάν.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section>
+  <div class="section-label">Τι λένε οι πελάτες</div>
+  <div class="section-title">Κριτικές</div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Ήρθε σε μισή ώρα, έλυσε το πρόβλημα γρήγορα και η τιμή ήταν πολύ λογική. Σύσταση ανεπιφύλακτα!</p>
+      <div class="reviewer">Μαρία Κ., Καλαμαριά</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Είχα διαρροή στο μπάνιο αργά το βράδυ. Τον κάλεσα και ήρθε άμεσα. Πολύ επαγγελματικός!</p>
+      <div class="reviewer">Γιώργης Τ., Τούμπα</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">Επικοινωνία</div>
+  <div class="section-title">Επικοινώνησε μαζί μου</div>
+  <div class="contact-cards">
+    <a href="tel:+306912345678" class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Τηλέφωνο</div>
+        <div class="contact-value">691 234 5678</div>
+      </div>
+    </a>
+    <a href="https://wa.me/306912345678" class="contact-card">
+      <div class="contact-icon">💬</div>
+      <div>
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-value">Στείλε μήνυμα</div>
+      </div>
+    </a>
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Περιοχή</div>
+        <div class="contact-value">Θεσσαλονίκη & περίχωρα</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Νίκος Παπαδόπουλος</strong> – Υδραυλικές Εργασίες</p>
+  <p style="margin-top:0.4rem">Θεσσαλονίκη · 691 234 5678</p>
+</footer>
+
+</body>
+</html>
